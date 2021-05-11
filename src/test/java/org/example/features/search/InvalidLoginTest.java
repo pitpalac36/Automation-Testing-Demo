@@ -5,10 +5,12 @@ import net.thucydides.core.annotations.Managed;
 import net.thucydides.core.annotations.Steps;
 import net.thucydides.junit.annotations.UseTestDataFrom;
 import org.example.steps.serenity.LoginSteps;
+import org.junit.Ignore;
 import org.junit.Test;
 import org.junit.runner.RunWith;
 import org.openqa.selenium.WebDriver;
 
+@Ignore
 @RunWith(SerenityParameterizedRunner.class)
 @UseTestDataFrom("src/test/resources/invalid_credentials.csv")
 public class InvalidLoginTest {

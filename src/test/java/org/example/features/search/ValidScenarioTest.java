@@ -3,7 +3,6 @@ import net.serenitybdd.junit.runners.SerenityParameterizedRunner;
 import net.thucydides.core.annotations.Managed;
 import net.thucydides.core.annotations.Steps;
 import net.thucydides.junit.annotations.UseTestDataFrom;
-import org.example.pages.ProfilePage;
 import org.example.steps.serenity.EditPageSteps;
 import org.example.steps.serenity.LoginSteps;
 import org.example.steps.serenity.MainPageSteps;
@@ -36,7 +35,7 @@ public class ValidScenarioTest {
 
     @Order(1)
     @Test
-    public void testScenario() {
+    public void testScenario() throws InterruptedException {
         loginSteps.loginPageOpen();
         loginSteps.login(username, password);
         assert (webDriver.getCurrentUrl().equals("https://moodle.cs.ubbcluj.ro/"));
@@ -53,10 +52,11 @@ public class ValidScenarioTest {
 
         long randomNumber = Math.round(Math.random() * 100000.0);
         String description = "HELLO WORLD" + randomNumber;
-
         editPageSteps.updateDescription(description);
         editPageSteps.updateProfile();
         assert (webDriver.getCurrentUrl().equals("https://moodle.cs.ubbcluj.ro/user/profile.php?id=4075"));
+        System.out.println(profilePageSteps.getDescription());
+        System.out.println(description);
         assert (profilePageSteps.getDescription().equals(description));
     }
 }
