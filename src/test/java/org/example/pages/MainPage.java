@@ -35,6 +35,12 @@ public class MainPage extends PageObject {
     @FindBy(id="id_submitbutton")
     private WebElement updateProfileButton;
 
+    @FindBy(css=".dropdown-item[aria-labelledby=actionmenuaction-6]")
+    private WebElement logoutButton;
+
+    @FindBy(className="login")
+    private WebElement loginMessage;
+
     public void typeCourse(String course) {
         courseSearchBox.sendKeys(course);
     }
@@ -49,6 +55,10 @@ public class MainPage extends PageObject {
 
     public void clickProfilePageButton() {
         profilePageButton.click();
+    }
+
+    public void clickLogoutButton() {
+        logoutButton.click();
     }
 
     public void clickEditProfile() {
@@ -71,5 +81,9 @@ public class MainPage extends PageObject {
 
     public void updateProfile() {
         updateProfileButton.click();
+    }
+
+    public boolean isLoggedOut() {
+        return loginMessage.getText().contains("You are not logged in.");
     }
 }

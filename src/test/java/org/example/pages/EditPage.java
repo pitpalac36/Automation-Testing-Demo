@@ -17,7 +17,7 @@ public class EditPage extends PageObject {
 
     public void setEditorBoxText(String text) {
         editorBox.click();
-        editorBox.sendKeys(Keys.chord(Keys.CONTROL, "a"), text);
+        editorBox.sendKeys(Keys.chord(Keys.CONTROL, "a"), Keys.BACK_SPACE, text);
     }
 
     public void clickUpdateProfileButton() {

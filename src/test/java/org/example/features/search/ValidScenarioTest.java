@@ -3,10 +3,7 @@ import net.serenitybdd.junit.runners.SerenityParameterizedRunner;
 import net.thucydides.core.annotations.Managed;
 import net.thucydides.core.annotations.Steps;
 import net.thucydides.junit.annotations.UseTestDataFrom;
-import org.example.steps.serenity.EditPageSteps;
-import org.example.steps.serenity.LoginSteps;
-import org.example.steps.serenity.MainPageSteps;
-import org.example.steps.serenity.ProfilePageSteps;
+import org.example.steps.serenity.*;
 import org.junit.Test;
 import org.junit.runner.RunWith;
 import org.openqa.selenium.WebDriver;
@@ -33,6 +30,9 @@ public class ValidScenarioTest {
     @Steps
     ProfilePageSteps profilePageSteps;
 
+    @Steps
+    LogoutSteps logoutSteps;
+
     @Order(1)
     @Test
     public void testScenario() throws InterruptedException {
@@ -58,5 +58,9 @@ public class ValidScenarioTest {
         System.out.println(profilePageSteps.getDescription());
         System.out.println(description);
         assert (profilePageSteps.getDescription().equals(description));
+
+        mainPageSteps.clickProfileDropdown();
+        logoutSteps.doLogout();
+        assert (logoutSteps.isLoggedOut());
     }
 }
