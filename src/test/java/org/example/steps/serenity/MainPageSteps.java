@@ -25,8 +25,8 @@ public class MainPageSteps {
         mainPage.divExistsAndContains(driver, text);
     }
 
-    public void clickEditProfile(WebDriver driver) {
-        mainPage.clickEditProfile(driver);
+    public void clickEditProfile() {
+        mainPage.clickEditProfile();
     }
 
     public void updateDescription(String text) {
@@ -35,9 +35,5 @@ public class MainPageSteps {
 
     public void updateProfile() {
         mainPage.updateProfile();
-    }
-
-    public boolean descriptionWasUpdated(WebDriver driver) {
-        return mainPage.descriptionWasUpdated(driver);
     }
 }

@@ -3,11 +3,15 @@ import net.serenitybdd.junit.runners.SerenityParameterizedRunner;
 import net.thucydides.core.annotations.Managed;
 import net.thucydides.core.annotations.Steps;
 import net.thucydides.junit.annotations.UseTestDataFrom;
+import org.example.pages.ProfilePage;
+import org.example.steps.serenity.EditPageSteps;
 import org.example.steps.serenity.LoginSteps;
 import org.example.steps.serenity.MainPageSteps;
+import org.example.steps.serenity.ProfilePageSteps;
 import org.junit.Test;
 import org.junit.runner.RunWith;
 import org.openqa.selenium.WebDriver;
+import org.springframework.core.annotation.Order;
 
 @RunWith(SerenityParameterizedRunner.class)
 @UseTestDataFrom("src/test/resources/valid_credentials.csv")
@@ -24,6 +28,13 @@ public class ValidScenarioTest {
     @Steps
     MainPageSteps mainPageSteps;
 
+    @Steps
+    EditPageSteps editPageSteps;
+
+    @Steps
+    ProfilePageSteps profilePageSteps;
+
+    @Order(1)
     @Test
     public void testScenario() {
         loginSteps.loginPageOpen();
@@ -36,11 +47,16 @@ public class ValidScenarioTest {
         mainPageSteps.clickProfileDropdown();
         mainPageSteps.clickProfilePageButton();
         assert (webDriver.getCurrentUrl().equals("https://moodle.cs.ubbcluj.ro/user/profile.php?id=4075"));
-        mainPageSteps.clickEditProfile(webDriver);
+
+        mainPageSteps.clickEditProfile();
         assert (webDriver.getCurrentUrl().equals("https://moodle.cs.ubbcluj.ro/user/edit.php?id=4075&returnto=profile"));
-        mainPageSteps.updateDescription("HELLO WORLD");
-        mainPageSteps.updateProfile();
-        //assert (webDriver.getCurrentUrl().equals("https://moodle.cs.ubbcluj.ro/user/profile.php?id=4075"));
-        //assert (mainPageSteps.descriptionWasUpdated(webDriver));
+
+        long randomNumber = Math.round(Math.random() * 100000.0);
+        String description = "HELLO WORLD" + randomNumber;
+
+        editPageSteps.updateDescription(description);
+        editPageSteps.updateProfile();
+        assert (webDriver.getCurrentUrl().equals("https://moodle.cs.ubbcluj.ro/user/profile.php?id=4075"));
+        assert (profilePageSteps.getDescription().equals(description));
     }
 }

@@ -51,8 +51,8 @@ public class MainPage extends PageObject {
         profilePageButton.click();
     }
 
-    public void clickEditProfile(WebDriver driver) {
-        driver.findElement(By.xpath("//a[@href=\'https://moodle.cs.ubbcluj.ro/user/edit.php?id=4075&returnto=profile\']")).click();
+    public void clickEditProfile() {
+        getDriver().findElement(By.xpath("//a[@href=\'https://moodle.cs.ubbcluj.ro/user/edit.php?id=4075&returnto=profile\']")).click();
     }
 
     public void divExistsAndContains(WebDriver driver, String text) {
@@ -71,9 +71,5 @@ public class MainPage extends PageObject {
 
     public void updateProfile() {
         updateProfileButton.click();
-    }
-
-    public boolean descriptionWasUpdated(WebDriver driver) {
-        return true;
     }
 }
