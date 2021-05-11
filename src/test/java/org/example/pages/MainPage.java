@@ -2,9 +2,13 @@ package org.example.pages;
 import net.thucydides.core.annotations.DefaultUrl;
 import net.thucydides.core.pages.PageObject;
 import org.openqa.selenium.By;
+import org.openqa.selenium.Keys;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.FindBy;
+
+import java.time.LocalDateTime;
+import java.util.Date;
 import java.util.List;
 import java.util.stream.Collectors;
 
@@ -24,6 +28,12 @@ public class MainPage extends PageObject {
 
     @FindBy(className = "courses course-search-result course-search-result-search")
     private WebElement courses;
+
+    @FindBy(id="id_description_editoredittable")
+    private WebElement description;
+
+    @FindBy(id="id_submitbutton")
+    private WebElement updateProfileButton;
 
     public void typeCourse(String course) {
         courseSearchBox.sendKeys(course);
@@ -52,5 +62,18 @@ public class MainPage extends PageObject {
         for (WebElement each : result) {
             assert (each.getText().contains(text));
         }
+    }
+
+    public void updateDescription(String newText) {
+        description.click();
+        description.sendKeys(Keys.chord(Keys.CONTROL, "a"), newText);
+    }
+
+    public void updateProfile() {
+        updateProfileButton.click();
+    }
+
+    public boolean descriptionWasUpdated(WebDriver driver) {
+        return true;
     }
 }

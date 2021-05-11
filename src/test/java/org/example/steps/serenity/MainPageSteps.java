@@ -28,4 +28,16 @@ public class MainPageSteps {
     public void clickEditProfile(WebDriver driver) {
         mainPage.clickEditProfile(driver);
     }
+
+    public void updateDescription(String text) {
+        mainPage.updateDescription(text);
+    }
+
+    public void updateProfile() {
+        mainPage.updateProfile();
+    }
+
+    public boolean descriptionWasUpdated(WebDriver driver) {
+        return mainPage.descriptionWasUpdated(driver);
+    }
 }

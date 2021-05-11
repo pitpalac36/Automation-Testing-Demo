@@ -35,6 +35,12 @@ public class ValidScenarioTest {
         mainPageSteps.divExistsAndContains(webDriver, "Web");
         mainPageSteps.clickProfileDropdown();
         mainPageSteps.clickProfilePageButton();
+        assert (webDriver.getCurrentUrl().equals("https://moodle.cs.ubbcluj.ro/user/profile.php?id=4075"));
         mainPageSteps.clickEditProfile(webDriver);
+        assert (webDriver.getCurrentUrl().equals("https://moodle.cs.ubbcluj.ro/user/edit.php?id=4075&returnto=profile"));
+        mainPageSteps.updateDescription("HELLO WORLD");
+        mainPageSteps.updateProfile();
+        //assert (webDriver.getCurrentUrl().equals("https://moodle.cs.ubbcluj.ro/user/profile.php?id=4075"));
+        //assert (mainPageSteps.descriptionWasUpdated(webDriver));
     }
 }
